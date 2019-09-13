@@ -1,0 +1,59 @@
+{
+  "name": "votesys-server",
+  "version": "1.0.0",
+  "description": "a project for votesys",
+  "private": true,
+  "egg": {
+    "declarations": true
+  },
+  "dependencies": {
+    "await-stream-ready": "^1.0.1",
+    "egg": "^2.15.1",
+    "egg-jwt": "^3.1.6",
+    "egg-scripts": "^2.11.0",
+    "egg-sequelize": "^5.2.0",
+    "egg-socket.io": "^4.1.6",
+    "egg-validate": "^2.0.2",
+    "exceljs": "^1.15.0",
+    "fdfs": "^1.0.4",
+    "images": "^3.0.2",
+    "mysql2": "^1.7.0",
+    "node-xlsx": "^0.15.0",
+    "sha1": "^1.1.1",
+    "uuid": "^3.3.3",
+    "xml2js": "^0.4.19"
+  },
+  "devDependencies": {
+    "autod": "^3.0.1",
+    "autod-egg": "^1.1.0",
+    "egg-bin": "^4.11.0",
+    "egg-ci": "^1.11.0",
+    "egg-mock": "^3.21.0",
+    "eslint": "^5.13.0",
+    "eslint-config-egg": "^7.1.0"
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "scripts": {
+    "start": "egg-scripts start --daemon --port=7007 --title=egg-server-votesys-server",
+    "stop": "egg-scripts stop --title=egg-server-votesys-server",
+    "dev": "egg-bin dev --port=7007",
+    "debug": "egg-bin debug",
+    "test": "npm run lint -- --fix && npm run test-local",
+    "test-local": "egg-bin test",
+    "cov": "egg-bin cov",
+    "lint": "eslint .",
+    "ci": "npm run lint && npm run cov",
+    "autod": "autod"
+  },
+  "ci": {
+    "version": "10"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "zhangjialin",
+  "license": "MIT"
+}
