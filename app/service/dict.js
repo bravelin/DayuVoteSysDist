@@ -6,6 +6,7 @@ const uuidv1 = require("uuid/v1");
 const fs = require('fs');
 const awaitWriteStream = require('await-stream-ready').write;
 
+// fastDFS客户端实例
 const fdfs = require('fdfs')
 const fdfsClient = new fdfs({
     trackers: [
@@ -22,7 +23,7 @@ function generateUUID() {
     return uuidv1().replace(/-/g, "");
 }
 
-class DictService extends Service {
+class DictService extends Service { // 查询所有
     async getAll() {
         const ctx = this.ctx;
         const data = await ctx.model.Dict.findAll();
@@ -33,7 +34,7 @@ class DictService extends Service {
         ctx.app.dict = dict;
         return data;
     }
-    async doUpdate(params) {
+    async doUpdate(params) { // 更新
         const ctx = this.ctx;
         const data = await ctx.model.Dict.findAll();
         let dictKey = null;
@@ -47,6 +48,7 @@ class DictService extends Service {
                 }
             }
         }
+        // 更新app
         const appDict = ctx.app.dict;
         Object.keys(appDict).forEach(key => {
             appDict[key] = params[key];
@@ -56,9 +58,9 @@ class DictService extends Service {
     async upload () {
         const { ctx, app } = this;
         const stream = await ctx.getFileStream();
-        const originalName = path.basename(stream.filename);
+        const originalName = path.basename(stream.filename); // 原文件名
         const fileType = stream.mimeType;
-        const fileExt = (fileType && fileType.indexOf('/') > 0) ? fileType.split('/')[1] : (fileType || '')
+        const fileExt = (fileType && fileType.indexOf('/') > 0) ? fileType.split('/')[1] : (fileType || '') // 文件后缀
         const tempFileName = generateUUID() + '.' + fileExt;
         const tempFilePath = path.join(app.config.uploadFastDfsDir, tempFileName);
         const writeStream = fs.createWriteStream(tempFilePath);
@@ -76,10 +78,10 @@ class DictService extends Service {
                 state: 'SUCCESS'
             }
             console.log('res...', res);
-            fs.unlinkSync(tempFilePath);
+            fs.unlinkSync(tempFilePath); // 删除临时文件
             return res;
         } catch (err) {
-            await sendToWormhole(stream);
+            await sendToWormhole(stream); // 必须将上传的文件流消费掉，要不然浏览器响应会卡死
             throw err;
         }
     }

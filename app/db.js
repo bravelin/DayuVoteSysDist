@@ -9,12 +9,10 @@ function defineModel(app, name, attributes) {
         let value = attributes[key];
         if (typeof value === "object" && value["type"]) {
             value.allowNull = value.allowNull || true;
-            value.field = key;
             attrs[key] = value;
         } else {
             attrs[key] = {
                 type: value,
-                field: key,
                 allowNull: true
             };
         }
@@ -33,8 +31,7 @@ function defineModel(app, name, attributes) {
     return app.model.define(name, attrs, {
         createdAt: "createdAt",
         updatedAt: "updatedAt",
-        freezeTableName: true,
-        underscored: false
+        freezeTableName: true
     });
 }
 module.exports = { defineModel };

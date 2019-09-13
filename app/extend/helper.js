@@ -76,3 +76,35 @@ exports.formatTime = (date, format = 'yyyy-MM-dd hh:mm:ss') => {
     }
     return format
 };
+
+// // 生成随机字符串
+// exports.createNonce = function () {
+//     return Math.random().toString(36).substr(2, 15);
+// };
+
+// // 生成时间戳
+// exports.createTimestamp = function () {
+//     return parseInt((new Date()).getTime() / 1000);
+// };
+
+// exports.parseXml = function (str) {
+//     return new Promise((resolve, reject) => {
+//         const parseString = xml2js.parseString;
+//         parseString(str, { explicitArray: false }, (err, json) => {
+//             if (json) {
+//                 resolve(json.xml);
+//             } else {
+//                 reject(err);
+//             }
+//         });
+//     })
+// };
+
+// exports.createXml = function (obj) {
+//     const builder = new xml2js.Builder({
+//         rootName: 'xml',
+//         headless: true,
+//         cdata: true
+//     });
+//     return builder.buildObject(obj);
+// };

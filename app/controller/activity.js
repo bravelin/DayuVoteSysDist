@@ -26,6 +26,7 @@ class ActivityController extends Controller {
             options.status = query.status || 'all'
             options.order = query.order || 'createdAt'
             options.orderDir = query.orderDir || 'DESC'
+            // console.log('query options:', options);
             const data = await service.activity.query(ctx.request.header.uid, options);
             helper.success(ctx, data)
         }

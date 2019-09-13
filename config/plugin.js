@@ -17,6 +17,11 @@ exports.jwt = {
     package: 'egg-jwt'
 };
 
+exports.oss = {
+    enable: true,
+    package: 'egg-oss'
+};
+
 exports.io = {
     enable: true,
     package: 'egg-socket.io'

@@ -6,12 +6,13 @@
 // app/router.js
 module.exports = app => {
     const { router, controller, io } = app;
-    router.get('/admin', controller.admin.index); // 管理端
-    router.get('/client', controller.user.index); // 用户端
+    router.get('/a', controller.admin.index); // 管理端
+    router.get('/u', controller.user.index); // 用户端
 
-    router.get('/admin/*', controller.admin.index); // 管理端 -- history模式
-    router.get(`/client/${app.config.wx.mp_verify}`, controller.user.mpVerify); // 微信接口安全域名设置
-    router.get('/client/*', controller.user.index); // 用户端
+
+    router.get('/a/*', controller.admin.index); // 管理端 -- history模式
+    router.get(`/u/${app.config.wx.mp_verify}`, controller.user.mpVerify); // 微信接口安全域名设置
+    router.get('/u/*', controller.user.index); // 用户端
 
     // ssl证书验证
     router.get(`/${app.config.ssl.path}`, controller.user.sslVerify);
@@ -104,6 +105,5 @@ module.exports = app => {
     router.post('/api/client/wx/cancelOrder', controller.client.cancelOrder); // 取消订单
 
     // 404
-    router.get('/', controller.admin.index); // 管理端
     router.get('*', controller.error.missing);
 };

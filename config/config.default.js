@@ -4,7 +4,7 @@ module.exports = appInfo => {
     const config = exports = {};
 
     // use for cookie sign key, should change to your own and keep security
-    config.keys = appInfo.name + '159684358438_105_520';
+    config.keys = appInfo.name + '_1304934400905_520';
 
     config.sequelize = {
         dialect: 'mysql',
@@ -33,12 +33,14 @@ module.exports = appInfo => {
         token: 'DayuVoteSys2019',
         mchId: '1555772081', // 商户号
         mchSecret: 'dengwenchang36072319920121311300', // 微信支付密钥
-        notifyUrl: 'https://vote.guangyitong.top/api/wx/index'
+        notifyUrl: 'https://guangyuan1688.com/api/wx/index'
     };
 
-    config.uploadDir = '/root/votesys-upload/excel/';
-    config.uploadFastDfsDir = '/root/votesys-upload/img/'; // fastDFS上传临时文件夹
-    config.picHost = 'https://vote.guangyitong.top/';
+    // bacem.cn部署环境
+    config.uploadDir = '/root/upload/';
+    config.uploadFastDfsDir = '/root/imgUpload/'; // fastDFS上传临时文件夹
+    config.picsDir = '/root/vote/vote-sys-dist/app/public/';
+    config.picHost = 'https://vote.guangyitong.top/api/wx/index';
 
     config.security = {
         csrf: {
@@ -59,6 +61,16 @@ module.exports = appInfo => {
                 connectionMiddleware: ['connection'],
                 packetMiddleware: []
             }
+        }
+    };
+
+    config.oss = {
+        client: {
+            accessKeyId: 'LTAIzHx1M8IbhfP9',
+            accessKeySecret: 'C8YzBP9hjqJ5ORB82EeaY7wcmA8xvr',
+            bucket: 'votesys',
+            endpoint: 'oss-cn-shenzhen.aliyuncs.com',
+            timeout: '60s'
         }
     };
 

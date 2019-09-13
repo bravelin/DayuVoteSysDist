@@ -1,6 +1,6 @@
-# votesys-server
+# exp
 
-a project for votesys
+
 
 ## QuickStart
 
@@ -31,3 +31,5 @@ $ npm stop
 
 
 [egg]: https://eggjs.org
+
+#npx sequelize migration:generate --name=init-users
