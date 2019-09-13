@@ -17,7 +17,7 @@ class WxService extends Service {
         // const dictValue = ctx.app.dict.wxAccessToken;
         if (dict && dict.dictValue) {
             const obj = JSON.parse(dict.dictValue);
-            console.log('from db:', obj);
+            // console.log('from db:', obj);
             return obj;
         }
         return null;
@@ -154,7 +154,7 @@ class WxService extends Service {
             'mch_id': config.mchId,
             'device_info': 'WEB',
             'nonce_str': Math.random().toString(36).substr(2, 15),
-            'body': `投票系统-钻石票购买`,
+            'body': `vote-reward`,
             'out_trade_no': tradeId,
             'total_fee': totalFee,
             'spbill_create_ip': clientIp,
