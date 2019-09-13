@@ -3,7 +3,7 @@
 const Controller = require('egg').Controller;
 const fs = require('fs');
 const path = require('path');
-const file = path.resolve(__dirname, '../public/u/index.html');
+const file = path.resolve(__dirname, '../public/client/index.html');
 let pageData = '';
 fs.readFile(file, (err, data) => {
     pageData = data;
