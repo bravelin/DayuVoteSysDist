@@ -104,5 +104,6 @@ module.exports = app => {
     router.post('/api/client/wx/cancelOrder', controller.client.cancelOrder); // 取消订单
 
     // 404
+    router.get('/', controller.admin.index); // 管理端
     router.get('*', controller.error.missing);
 };

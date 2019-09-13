@@ -16,8 +16,8 @@ module.exports = appInfo => {
     };
 
     config.jwt = {
-        secret: 'jiK20l1809sYz',
-        secret2: 'cbkYNall86BiAjk'
+        secret: 'jii20l1809sYc',
+        secret2: 'cbiYlall86Bi0jk'
     };
 
     config.ssl = {
@@ -26,28 +26,19 @@ module.exports = appInfo => {
     };
 
     config.wx = {
-        // 游越网络服务号
-        mp_verify: 'MP_verify_Caa2LHlQK4HwbUld.txt',
-        appId: 'wx1851bf79045cdf84',
-        appSecret: '02a85a7a136ba03c8cd2c3ab176b6607',
-        encodingAESKey: '5oozvLjwKTnfDFUKD2aKWY3qN8FY3DAXWx5ztm2rNoZ',
-        token: 'VoteSystem2019',
-        mchId: '1529148531', // 商户号
-        mchSecret: '20180207ypj20170308ypj1234567890', // 微信支付密钥
-        notifyUrl: 'https://guangyuan1688.com/api/wx/index'
+        mp_verify: 'MP_verify_pBDs8K6eBbF7UKmf.txt',
+        appId: 'wx79735b40b5c806aa',
+        appSecret: '1b6bdc73479d0d69a79bd9e9d2ec80b0',
+        encodingAESKey: 'xeGcYay15A53tGbIZnqQlVZ53bp2fTyiT57MZee4xOh',
+        token: 'DayuVoteSys2019',
+        mchId: '1555772081', // 商户号
+        mchSecret: 'dengwenchang36072319920121311300', // 微信支付密钥
+        notifyUrl: 'https://vote.guangyitong.top/api/wx/index'
     };
 
-    // bacem.cn部署环境
-    config.uploadDir = '/root/upload/';
-    config.uploadFastDfsDir = '/root/imgUpload/'; // fastDFS上传临时文件夹
-    config.picsDir = '/root/vote/vote-sys-dist/app/public/';
-    config.picHost = 'https://guangyuan1688.com/';
-
-    // barvelin.top部署环境
-    // config.uploadDir = '/root/upload/';
-    // config.uploadFastDfsDir = '/root/imgUpload/'; // fastDFS上传临时文件夹
-    // config.picsDir = '/root/vote-sys-dist/app/public/';
-    // config.picHost = 'https://bravelin.top/';
+    config.uploadDir = '/root/votesys-upload/excel/';
+    config.uploadFastDfsDir = '/root/votesys-upload/img/'; // fastDFS上传临时文件夹
+    config.picHost = 'https://vote.guangyitong.top/';
 
     config.security = {
         csrf: {
@@ -68,16 +59,6 @@ module.exports = appInfo => {
                 connectionMiddleware: ['connection'],
                 packetMiddleware: []
             }
-        }
-    };
-
-    config.oss = {
-        client: {
-            accessKeyId: 'LTAIzHx1M8IbhfP9',
-            accessKeySecret: 'C8YzBP9hjqJ5ORB82EeaY7wcmA8xvr',
-            bucket: 'votesys',
-            endpoint: 'oss-cn-shenzhen.aliyuncs.com',
-            timeout: '60s'
         }
     };
 

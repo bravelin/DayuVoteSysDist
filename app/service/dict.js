@@ -3,10 +3,26 @@ const Service = require('egg').Service;
 const path = require('path');
 const sendToWormhole = require('stream-wormhole');
 const uuidv1 = require("uuid/v1");
+const fs = require('fs');
+const awaitWriteStream = require('await-stream-ready').write;
+
+const fdfs = require('fdfs')
+const fdfsClient = new fdfs({
+    trackers: [
+        {
+            host: '0.0.0.0',
+            port: 22122
+        }
+    ],
+    timeout: 10000,
+    charset: 'utf8'
+})
+
 function generateUUID() {
     return uuidv1().replace(/-/g, "");
 }
-class DictService extends Service { // 查询所有
+
+class DictService extends Service {
     async getAll() {
         const ctx = this.ctx;
         const data = await ctx.model.Dict.findAll();
@@ -17,7 +33,7 @@ class DictService extends Service { // 查询所有
         ctx.app.dict = dict;
         return data;
     }
-    async doUpdate(params) { // 更新
+    async doUpdate(params) {
         const ctx = this.ctx;
         const data = await ctx.model.Dict.findAll();
         let dictKey = null;
@@ -31,34 +47,39 @@ class DictService extends Service { // 查询所有
                 }
             }
         }
-        // 更新app
         const appDict = ctx.app.dict;
         Object.keys(appDict).forEach(key => {
             appDict[key] = params[key];
         });
         return true;
     }
-    async upload (userId) {
-        const { ctx } = this;
+    async upload () {
+        const { ctx, app } = this;
         const stream = await ctx.getFileStream();
         const originalName = path.basename(stream.filename);
         const fileType = stream.mimeType;
-        const fileSize = stream.fields.size;
-        const generateName = generateUUID() + originalName.substr(originalName.lastIndexOf('.'));
-        const fileName = `music/${userId}/${generateName}`;
-        let result = null;
+        const fileExt = (fileType && fileType.indexOf('/') > 0) ? fileType.split('/')[1] : (fileType || '')
+        const tempFileName = generateUUID() + '.' + fileExt;
+        const tempFilePath = path.join(app.config.uploadFastDfsDir, tempFileName);
+        const writeStream = fs.createWriteStream(tempFilePath);
         try {
-            result = await ctx.oss.put(fileName, stream);
-            return {
+            await awaitWriteStream(stream.pipe(writeStream));
+            const fileId = await fdfsClient.upload(tempFilePath);
+            const generateName = fileId.substr(fileId.lastIndexOf('/') + 1);
+            const fileStat = fs.statSync(tempFilePath);
+            const res = {
                 originalName,
                 name: generateName,
-                type: fileType.substr(1),
-                url: result.url,
-                size: fileSize,
+                type: fileType,
+                url: app.config.picHost + fileId,
+                size: fileStat.size,
                 state: 'SUCCESS'
             }
+            console.log('res...', res);
+            fs.unlinkSync(tempFilePath);
+            return res;
         } catch (err) {
-            await sendToWormhole(stream); // 必须将上传的文件流消费掉，要不然浏览器响应会卡死
+            await sendToWormhole(stream);
             throw err;
         }
     }
