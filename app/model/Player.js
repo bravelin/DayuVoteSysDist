@@ -40,6 +40,14 @@ module.exports = app => {
             type: INTEGER,
             defaultValue: 0
         },
+        imgWidth: {
+            type: INTEGER,
+            defaultValue: 0
+        },
+        imgHeight: {
+            type: INTEGER,
+            defaultValue: 0
+        },
         cashGift: {
             type: INTEGER,
             defaultValue: 0

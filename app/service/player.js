@@ -23,7 +23,7 @@ class PlayerService extends Service {
             limit: options.pageSize,
             offset: (options.page - 1) * options.pageSize,
             order: [[options.order, options.orderDir]],
-            attributes: ['address', 'type', 'cashGift', 'diamondVotes', 'id', 'introduce', 'name', 'no', 'pictures', 'status', 'tel', 'remark', 'totalVotes']
+            attributes: ['address', 'imgWidth', 'imgHeight', 'type', 'cashGift', 'diamondVotes', 'id', 'introduce', 'name', 'no', 'pictures', 'status', 'tel', 'remark', 'totalVotes']
         }
         query.where = {}
         if (options.key0) {
@@ -415,6 +415,8 @@ class PlayerService extends Service {
                 type: params.type,
                 actId: params.actId,
                 userId: params.userId,
+                imgWidth: params.imgWidth || 0,
+                imgHeight: params.imgHeight || 0,
                 totalVotes: 0,
                 diamondVotes: 0,
                 adjustVotes: 0,
@@ -444,7 +446,9 @@ class PlayerService extends Service {
                 remark: params.remark,
                 name: params.name,
                 pictures: params.pictures,
-                introduce: params.introduce
+                introduce: params.introduce,
+                imgWidth: params.imgWidth || 0,
+                imgHeight: params.imgHeight || 0
             });
             return true
         } else {
