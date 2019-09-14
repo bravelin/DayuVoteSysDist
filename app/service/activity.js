@@ -244,7 +244,8 @@ class ActivityService extends Service {
                 status: '1', // 未开始
                 p0: act.p0,
                 p1: act.p1,
-                createUserId: act.createUserId
+                createUserId: act.createUserId,
+                createRealName: act.createRealName
             })
             return true;
         } else {
@@ -375,7 +376,8 @@ class ActivityService extends Service {
                 status: '1', // 未开始
                 p0: manager.p0,
                 p1: manager.p1,
-                createUserId
+                createUserId,
+                createRealName: manager.realName
             })
             ctx.service.logs.add(`创建活动:${params.title}`);
             return true;

@@ -73,6 +73,10 @@ module.exports = app => {
             type: STRING,
             allowNull: false
         },
+        createRealName: {
+            type: STRING,
+            allowNull: false
+        },
         p0: {
             type: STRING
         },
