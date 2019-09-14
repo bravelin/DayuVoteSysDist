@@ -68,6 +68,7 @@ module.exports = app => {
     router.post('/api/orders', controller.vote.orders);
     router.post('/api/orders/stat', controller.vote.statOrders);
     router.post('/api/realtime/orders', controller.vote.realtimeOrders);
+    router.post('/api/account/score/stat', controller.vote.statAccounts);
 
     // 用户访问记录
     router.resources('visit', '/api/visit', controller.visit);

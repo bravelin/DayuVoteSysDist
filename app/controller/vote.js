@@ -94,6 +94,21 @@ class VoteController extends Controller {
             }
         }
     }
+    // 绩效统计
+    async statAccounts () {
+        const { ctx, service } = this;
+        const helper = ctx.helper;
+        const isVerify = await helper.verifyToken(ctx);
+        if (isVerify) {
+            const params = ctx.request.body;
+            const res = await service.vote.statAccounts(params.uid);
+            if (res) {
+                helper.success(ctx, res);
+            } else {
+                helper.success(ctx, '', '查询绩效统计数据失败!', 501);
+            }
+        }
+    }
     // 投票统计
     async statVoteByDate () {
         const { ctx, service } = this;

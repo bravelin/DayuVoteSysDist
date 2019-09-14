@@ -109,6 +109,57 @@ class VoteService extends Service {
         resData.totalPage = Math.ceil(resData.total / options.pageSize);
         return resData;
     }
+    // 绩效统计
+    async statAccounts (uid) {
+        const ctx = this.ctx;
+        const Sequelize = ctx.app.Sequelize;
+        const deltTime = 8 * 60 * 60 * 1000;
+        // 查询下级账号
+        const sql0 = `select id, realName, realName, role, loginName, from manager where (manager.p0='${uid}' or n.p1='${uid}')`;
+        const res0 = await ctx.model.query(sql0, { type: Sequelize.QueryTypes.SELECT });
+        
+        // 查询今天的
+        let startTime = new Date();
+        let endTime = new Date();
+        let startTimeStr = '';
+        let endTimeStr = '';
+        startTime.setHours(0, 0, 0, 0);
+        startTime.setTime(startTime.getTime() - deltTime);
+        endTime.setTime(endTime.getTime() - deltTime);
+        startTimeStr = ctx.helper.formatTime(startTime, 'yyyy-MM-dd hh:mm:ss');
+        endTimeStr = ctx.helper.formatTime(endTime, 'yyyy-MM-dd hh:mm:ss');
+        const sql1 = `select sum(v.diamondAmount) as score, m.id as uid from vote as v, (select m.id as id, m.realName as realName from manager as m where (m.p0='${uid}' or m.p1='${uid}')) as m where (v.p0=m.id or v.p1=m.id or v.createUserId=m.id) and v.createdAt>='${startTimeStr}' and v.createdAt<='${endTimeStr}' group by m.id`;
+        const res1 = await ctx.model.query(sql1, { type: Sequelize.QueryTypes.SELECT });
+
+        // 查询本周的
+        startTime = new Date();
+        endTime = new Date();
+        let currDay = startTime.getDay(); 
+        if (currDay == 0) { currDay = 7 }
+        startTime.setTime(startTime.getTime() - currDay * 24 * 60 * 60 * 1000);
+        startTime.setHours(0, 0, 0, 0);
+        startTime.setTime(startTime.getTime() - deltTime);
+        endTime.setTime(endTime.getTime() - deltTime);
+        startTimeStr = ctx.helper.formatTime(startTime, 'yyyy-MM-dd hh:mm:ss');
+        endTimeStr = ctx.helper.formatTime(endTime, 'yyyy-MM-dd hh:mm:ss');
+        const sql2 = `select sum(v.diamondAmount) as score, m.id as uid from vote as v, (select m.id as id, m.realName as realName from manager as m where (m.p0='${uid}' or m.p1='${uid}')) as m where (v.p0=m.id or v.p1=m.id or v.createUserId=m.id) and v.createdAt>='${startTimeStr}' and v.createdAt<='${endTimeStr}' group by m.id`;
+        const res2 = await ctx.model.query(sql2, { type: Sequelize.QueryTypes.SELECT });
+
+        // 查询本月的
+        startTime = new Date();
+        endTime = new Date();
+        let currDate = startTime.getDate();
+        startTime.setTime(startTime.getTime() - currDate * 24 * 60 * 60 * 1000);
+        startTime.setHours(0, 0, 0, 0);
+        startTime.setTime(startTime.getTime() - deltTime);
+        endTime.setTime(endTime.getTime() - deltTime);
+        startTimeStr = ctx.helper.formatTime(startTime, 'yyyy-MM-dd hh:mm:ss');
+        endTimeStr = ctx.helper.formatTime(endTime, 'yyyy-MM-dd hh:mm:ss');
+        const sql3 = `select sum(v.diamondAmount) as score, m.id as uid from vote as v, (select m.id as id, m.realName as realName from manager as m where (m.p0='${uid}' or m.p1='${uid}')) as m where (v.p0=m.id or v.p1=m.id or v.createUserId=m.id) and v.createdAt>='${startTimeStr}' and v.createdAt<='${endTimeStr}' group by m.id`;
+        const res3 = await ctx.model.query(sql3, { type: Sequelize.QueryTypes.SELECT });
+
+        return { res0, res1, res2, res3 };
+    }
     async realtimeOrders (userId) {
         const ctx = this.ctx;
         const Sequelize = ctx.app.Sequelize;
