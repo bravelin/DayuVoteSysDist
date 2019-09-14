@@ -91,7 +91,7 @@ class ManagersController extends Controller {
                 ctx.helper.success(ctx, '', '账号密码不能为空!', 501)
                 return
             }
-            const res = await service.managers.create(params.loginName, params.realName, params.loginPassword, params.role, params.miniPower || '0');
+            const res = await service.managers.create(params.loginName, params.realName, params.loginPassword, params.role, params.miniPower || '0', params.pId);
             if (res) {
                 helper.success(ctx, '');
             } else {

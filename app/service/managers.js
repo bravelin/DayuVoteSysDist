@@ -6,13 +6,17 @@ class ManagersService extends Service {
     // 查询该账号下的子账号
     async query(userId) {
         const ctx = this.ctx;
-        const Op = ctx.app.Sequelize.Op;
-        const resData = await ctx.model.Manager.findAll({
-            attributes: { exclude: ['loginPassword'] },
-            where: {
-                [Op.or]: [{ p0: userId }, { p1: userId }]
-            },
-            order: [['role', 'ASC'], ['createdAt', 'DESC']]
+        const Sequelize = ctx.app.Sequelize;
+        // const resData = await ctx.model.Manager.findAll({
+        //     attributes: { exclude: ['loginPassword'] },
+        //     where: {
+        //         [Op.or]: [{ p0: userId }, { p1: userId }]
+        //     },
+        //     order: [['role', 'ASC'], ['createdAt', 'DESC']]
+        // });
+        const sql = `select m.id as id, m.loginName as loginName, m.realName as realName, m.lastLoginTime as lastLoginTime, m.role as role, m.p0 as p0, m.p1 as p1, m.createdAt as createdAt, m.updatedAt as updatedAt, m.miniPower as miniPower, n.loginName as pLoginName, n.realName as pRealName from manager as m, manager as n where (m.p0='${userId}' or m.p1='${userId}') and ((m.p1 is not null and n.id = m.p1) or (m.p1 is null and m.p0 = n.id))`;
+        const resData = await ctx.model.query(sql, {
+            type: Sequelize.QueryTypes.SELECT
         });
         return resData;
     }
@@ -44,7 +48,7 @@ class ManagersService extends Service {
         return resData;
     }
     // 创建账号
-    async create (loginName, realName, password, role, miniPower) {
+    async create (loginName, realName, password, role, miniPower, pId) {
         const ctx = this.ctx;
         const resData = await ctx.model.Manager.findOne({
             where: { loginName }
@@ -55,7 +59,7 @@ class ManagersService extends Service {
             role = role - 0
             let p0 = null
             let p1 = null
-            const creatorId = ctx.request.header.uid;
+            const creatorId = pId || ctx.request.header.uid;
             if (role == 1) {
                 p0 = creatorId;
             } else {
