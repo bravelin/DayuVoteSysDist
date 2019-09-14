@@ -36,6 +36,8 @@ $ npm stop
 
 actId 2f3a3a70d62511e993956d615c55790b
 
+select m.id as id, m.realName as realName, m.role as role, m.loginName as loginName from manager as m, manager as n where (m.p0='6c84fb9012c411e1840d7b25c5ee775a' or m.p1='6c84fb9012c411e1840d7b25c5ee775a') and n.id='6c84fb9012c411e1840d7b25c5ee775a' and m.role = n.role + 1
+
 6c84fb9012c411e1840d7b25c5ee775a
 
 g0 a1a02d40d68e11e9962e0150aeae938b    2019-09-15 08:49:00/10  2019-08-15 08:49:00 1080  1090

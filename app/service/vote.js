@@ -115,7 +115,7 @@ class VoteService extends Service {
         const Sequelize = ctx.app.Sequelize;
         const deltTime = 8 * 60 * 60 * 1000;
         // 查询下级账号
-        const sql0 = `select id, realName, realName, role, loginName from manager where p0='${uid}' or p1='${uid}'`;
+        const sql0 = `select m.id as id, m.realName as realName, m.role as role, m.loginName as loginName from manager as m, manager as n where (m.p0='${uid}' or m.p1='${uid}') and n.id='${uid}' and m.role = n.role + 1`;
         const res0 = await ctx.model.query(sql0, { type: Sequelize.QueryTypes.SELECT });
         
         // 查询今天的
@@ -130,6 +130,7 @@ class VoteService extends Service {
         endTimeStr = ctx.helper.formatTime(endTime, 'yyyy-MM-dd hh:mm:ss');
         const sql1 = `select sum(v.diamondAmount) as score, m.id as uid from vote as v, (select m.id as id, m.realName as realName from manager as m where (m.p0='${uid}' or m.p1='${uid}')) as m where (v.p0=m.id or v.p1=m.id or v.createUserId=m.id) and v.createdAt>='${startTimeStr}' and v.createdAt<='${endTimeStr}' group by m.id`;
         const res1 = await ctx.model.query(sql1, { type: Sequelize.QueryTypes.SELECT });
+        console.log('sql1...', sql1);
 
         // 查询本周的
         startTime = new Date();
@@ -144,6 +145,7 @@ class VoteService extends Service {
         endTimeStr = ctx.helper.formatTime(endTime, 'yyyy-MM-dd hh:mm:ss');
         const sql2 = `select sum(v.diamondAmount) as score, m.id as uid from vote as v, (select m.id as id, m.realName as realName from manager as m where (m.p0='${uid}' or m.p1='${uid}')) as m where (v.p0=m.id or v.p1=m.id or v.createUserId=m.id) and v.createdAt>='${startTimeStr}' and v.createdAt<='${endTimeStr}' group by m.id`;
         const res2 = await ctx.model.query(sql2, { type: Sequelize.QueryTypes.SELECT });
+        console.log('sql2...', sql2);
 
         // 查询本月的
         startTime = new Date();
