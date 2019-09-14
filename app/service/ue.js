@@ -43,12 +43,12 @@ class UeService extends Service {
         const writeStream = fs.createWriteStream(tempFilePath);
         try {
             // 先存到临时文件夹下
-            console.log('fileExt...', fileExt);
-            console.log('originalName...', originalName);
-            console.log('tempFileName...', tempFileName, tempFilePath);
+            // console.log('fileExt...', fileExt);
+            // console.log('originalName...', originalName);
+            // console.log('tempFileName...', tempFileName, tempFilePath);
             await awaitWriteStream(stream.pipe(writeStream));
             const fileId = await fdfsClient.upload(tempFilePath);
-            console.log('fileId....', fileId);
+            // console.log('fileId....', fileId);
             const generateName = fileId.substr(fileId.lastIndexOf('/') + 1);
             const fileStat = fs.statSync(tempFilePath);
             const res = {
@@ -59,7 +59,7 @@ class UeService extends Service {
                 size: fileStat.size,
                 state: 'SUCCESS'
             }
-            console.log('res...', res);
+            // console.log('res...', res);
             fs.unlinkSync(tempFilePath); // 删除临时文件
             return res;
         } catch (err) {
@@ -67,29 +67,5 @@ class UeService extends Service {
             throw err;
         }
     }
-    // async uploadVideo(userId) { // 处理视频上传
-    //     const { ctx } = this;
-    //     const stream = await ctx.getFileStream();
-    //     const originalName = path.basename(stream.filename);
-    //     const fileType = stream.mimeType;
-    //     const fileSize = stream.fields.size;
-    //     const generateName = generateUUID() + originalName.substr(originalName.lastIndexOf('.'));
-    //     const fileName = `movies/${userId}/${generateName}`;
-    //     let result = null;
-    //     try {
-    //         result = await ctx.oss.put(fileName, stream);
-    //         return {
-    //             originalName,
-    //             name: generateName,
-    //             type: fileType.substr(1),
-    //             url: result.url,
-    //             size: fileSize,
-    //             state: 'SUCCESS'
-    //         }
-    //     } catch (err) {
-    //         await sendToWormhole(stream); // 必须将上传的文件流消费掉，要不然浏览器响应会卡死
-    //         throw err;
-    //     }
-    // }
 }
 module.exports = UeService;

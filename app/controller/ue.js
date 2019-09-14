@@ -12,11 +12,11 @@ class UeController extends Controller {
             ctx.body = res;
             ctx.status = 200;
         } else if (action == 'uploadimage') { // 图片上传
-            console.log('upload image...')
+            // console.log('upload image...')
             const isVerify = await helper.verifyToken(ctx);
             if (isVerify) {
                 const res = await ctx.service.ue.uploadImage();
-                console.log('upload img res...', res)
+                // console.log('upload img res...', res)
                 ctx.body = res;
                 ctx.status = 200;
             }

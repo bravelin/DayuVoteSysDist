@@ -36,11 +36,9 @@ module.exports = appInfo => {
         notifyUrl: 'https://guangyuan1688.com/api/wx/index'
     };
 
-    // bacem.cn部署环境
-    config.uploadDir = '/root/upload/';
-    config.uploadFastDfsDir = '/root/imgUpload/'; // fastDFS上传临时文件夹
-    config.picsDir = '/root/vote/vote-sys-dist/app/public/';
-    config.picHost = 'https://vote.guangyitong.top/api/wx/index';
+    config.uploadDir = '/root/votesys-upload/excel/';
+    config.uploadFastDfsDir = '/root/votesys-upload/img/'; // fastDFS上传临时文件夹
+    config.picHost = 'https://vote.guangyitong.top/';
 
     config.security = {
         csrf: {
@@ -61,16 +59,6 @@ module.exports = appInfo => {
                 connectionMiddleware: ['connection'],
                 packetMiddleware: []
             }
-        }
-    };
-
-    config.oss = {
-        client: {
-            accessKeyId: 'LTAIzHx1M8IbhfP9',
-            accessKeySecret: 'C8YzBP9hjqJ5ORB82EeaY7wcmA8xvr',
-            bucket: 'votesys',
-            endpoint: 'oss-cn-shenzhen.aliyuncs.com',
-            timeout: '60s'
         }
     };
 
