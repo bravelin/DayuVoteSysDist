@@ -280,7 +280,7 @@ class WxService extends Service {
     async doAfterPay (options) {
         const ctx = this.ctx;
         const app = ctx.app;
-        console.log('doAfterPay.....')
+        console.log('doAfterPay.....', options)
         if (options.result_code == 'SUCCESS' && options.return_code == 'SUCCESS') {
             const timeEnd = options.time_end;
             const transactionId = options.transaction_id;

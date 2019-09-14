@@ -29,6 +29,7 @@ class WxController extends Controller {
         console.log('message:', message);
         if (message) {
             if (message.trade_type == 'JSAPI') { // 微信支付的回调
+                console.log('微信支付的回调=====================')
                 return await ctx.service.wx.doAfterPay(message);
             } else {
                 const messageType = message.MsgType;
