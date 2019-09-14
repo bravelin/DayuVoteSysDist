@@ -115,7 +115,7 @@ class VoteService extends Service {
         const Sequelize = ctx.app.Sequelize;
         const deltTime = 8 * 60 * 60 * 1000;
         // 查询下级账号
-        const sql0 = `select id, realName, realName, role, loginName, from manager where (manager.p0='${uid}' or n.p1='${uid}')`;
+        const sql0 = `select id, realName, realName, role, loginName, from manager where (manager.p0='${uid}' or manager.p1='${uid}')`;
         const res0 = await ctx.model.query(sql0, { type: Sequelize.QueryTypes.SELECT });
         
         // 查询今天的
