@@ -43,12 +43,12 @@ class UeService extends Service {
         const writeStream = fs.createWriteStream(tempFilePath);
         try {
             // 先存到临时文件夹下
-            // console.log('fileExt...', fileExt);
-            // console.log('originalName...', originalName);
-            // console.log('tempFileName...', tempFileName, tempFilePath);
+            console.log('fileExt...', fileExt);
+            console.log('originalName...', originalName);
+            console.log('tempFileName...', tempFileName, tempFilePath);
             await awaitWriteStream(stream.pipe(writeStream));
             const fileId = await fdfsClient.upload(tempFilePath);
-            // console.log('fileId....', fileId);
+            console.log('fileId....', fileId);
             const generateName = fileId.substr(fileId.lastIndexOf('/') + 1);
             const fileStat = fs.statSync(tempFilePath);
             const res = {
