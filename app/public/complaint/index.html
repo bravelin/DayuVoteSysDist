@@ -1,0 +1,122 @@
+<!DOCTYPE html >
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="format-detection" content="telephone=no">
+        <meta http-equiv="x-dns-prefetch-control" content="on">
+        <title>投诉</title>
+        <link rel="stylesheet" href="./css/weui.css">
+        <link rel="stylesheet" href="./css/wxappeal.css">
+        <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+        <script src="https://cdn.staticfile.org/vue-router/2.7.0/vue-router.min.js"></script>
+        <script src="./js/tools/jquery.js"></script>
+        <script src="./js/tools/methods.js"></script>
+        <!--组件js引入要注意顺序，否则会报错-->
+        <script src="./js/components/TopNav.js"></script>
+        <script src="./js/components/BottomNav.js"></script>
+        <script src="./js/components/AppealNav.js"></script>
+        <script src="./js/pages/AppealDetail.js"></script>
+        <script src="./js/pages/AppealSuccess.js"></script>
+        <script src="./js/pages/ChooseAppeal.js"></script>
+        <script src="./js/pages/ChooseType.js"></script>
+        <script src="./js/pages/NetError.js"></script>
+        <script src="./js/main.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <keep-alive>
+                <router-view class="child-view" v-if="$route.meta.keepAlive"></router-view>
+            </keep-alive>
+
+            <router-view class="child-view" v-if="!$route.meta.keepAlive"></router-view>
+        </div>
+
+        <!-- 选择投诉类型 start-->
+        <script type="text/x-template" id="chooseTypeCom">
+            <div class='all'>
+                <TopNav :toptxt="toptxt"></TopNav>
+                <router-link tag='li' v-for="item in types" :to="{name:'ChooseAppeal',query:{id:item.id}}" class="weui-cell weui-cell_access js_item" data-id="button">
+                    <div class="weui-cell__bd">
+                        <p class="bold">{{item.title}}</p>
+                    </div>
+                    <div class="weui-cell__ft"></div>
+                </router-link>
+                <BottomNav :bottomtxt="bottomtxt" :link_url="link_url"></BottomNav>
+                <AppealNav></AppealNav>
+            </div>
+        </script>
+        <!-- 选择投诉类型 end-->
+
+        <!-- 提交给微信团队 start-->
+        <script type="text/x-template" id="chooseAppealCom">
+            <div class="all">
+                <TopNav :toptxt="toptxt"></TopNav>
+                <li class="weui-cell weui-cell_access js_item" data-id="button" @click="submitAppeal">
+                    <div class="weui-cell__bd">
+                        <p class="bold">{{title}}</p>
+                    </div>
+                    <div class="weui-cell__ft"></div>
+                </li>
+                <BottomNav :bottomtxt="bottomtxt" :link_url="link_url"></BottomNav>
+                <AppealNav></AppealNav>
+            </div>
+        </script>
+        <!-- 提交给微信团队 end-->
+
+        <!-- 投诉须知 start-->
+        <script type="text/x-template" id="appealDetailCom">
+            <div class="backWhite">
+                <p class="appealTitle center">投诉须知</p>
+                <div class="content">
+                    <span class="small">你应保证你的投诉行为基于善意，并代表你本人真实意思。
+                    腾讯作为中立的平台服务者，收到你投诉后，会尽快按照相关法律法规的规定独立判断并进行处理。
+                    腾讯将会采取合理的措施保护你的个人信息；除法律法规规定的情形外，未经用户许可腾讯不会向第三方公开、
+                    透露你的个人信息。</span>
+                </div>
+            </div>
+        </script>
+        <!-- 投诉须知 end-->
+
+        <!-- 提交成功 start-->
+        <script type="text/x-template" id="appealSuccessCom">
+            <div class="weui-msg">
+                <div class="weui-msg__icon-area">
+                    <i class="weui-icon-success weui-icon_msg"></i>
+                </div>
+                <div class="weui-msg__text-area">
+                    <h2 class="weui-msg__title">投诉已提交</h2>
+                    <p class="weui-msg__desc left">微信团队将会尽快核实，并通过"微信团队"通知你审核结果。感谢你的支持。</p>
+                </div>
+                <div class="weui-msg__opr-area">
+                    <p class="weui-btn-area">
+                        <a href="javascript:;" class="weui-btn weui-btn_primary" @click="$close">关闭</a>
+                    </p>
+                </div>
+            </div>
+        </script>
+        <!-- 提交成功 end-->
+
+        <!-- 提交失败 start-->
+        <script type="text/x-template" id="netErrorCom">
+            <div class="weui-msg">
+                <div class="weui-msg__icon-area">
+                    <i class="weui-icon-warn weui-icon_msg"></i>
+                </div>
+                <div class="weui-msg__text-area">
+                    <h2 class="weui-msg__title">错误</h2>
+                    <p class="weui-msg__desc">网络异常，请稍后尝试</p>
+                </div>
+                <div class="weui-msg__opr-area">
+                    <p class="weui-btn-area">
+                        <a href="javascript:;" class="weui-btn weui-btn_primary" @click="$close">关闭</a>
+                    </p>
+                </div>
+            </div>
+        </script>
+        <!-- 提交失败 end-->
+    </body>
+</html>
