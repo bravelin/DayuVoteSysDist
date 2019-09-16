@@ -17,7 +17,6 @@ class WxService extends Service {
         // const dictValue = ctx.app.dict.wxAccessToken;
         if (dict && dict.dictValue) {
             const obj = JSON.parse(dict.dictValue);
-            console.log('from db:', obj);
             return obj;
         }
         return null;

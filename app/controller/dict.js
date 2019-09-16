@@ -32,5 +32,11 @@ class DictController extends Controller {
             ctx.status = 200;
         }
     }
+    async updateWxAccessToken () {
+        const { ctx } = this;
+        await ctx.service.wx.doGetAccessToken();
+        ctx.body = 'ok';
+        ctx.status = 200;
+    }
 }
 module.exports = DictController;

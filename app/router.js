@@ -82,6 +82,7 @@ module.exports = app => {
     router.get('/api/dicts', controller.dict.index);
     router.post('/api/dicts', controller.dict.doUpdate);
     router.post('/api/music', controller.dict.upload);
+    router.get('/api/wx/update/accessToken', controller.dict.updateWxAccessToken);
 
     // UEditor 图片文件上传
     router.get('/api/ue', controller.ue.index);
