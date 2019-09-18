@@ -6,7 +6,7 @@ class UpdateActStar extends Subscription {
     static get schedule() {
         return {
             type: 'all',
-            cron: '0 0 22 * * *'
+            cron: '0 0 10 * * *'
         }
     }
     async subscribe () {
