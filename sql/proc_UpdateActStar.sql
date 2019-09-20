@@ -7,7 +7,7 @@ begin
     declare new_star_player char(32); -- 新的今日之星
     declare old_star_player char(32); -- 旧的今日之星
     declare done boolean default 0;
-    declare act_cur cursor for select id, starPlayer from activity where activity.status = '3' or activity.status = '2' or activity.status = '4';
+    declare act_cur cursor for select id, starPlayer from activity where activity.status = '3' or activity.status = '4';
     declare continue handler for sqlstate '02000' set done = 1;
     open act_cur;
 	while done <> 1 do

@@ -22,7 +22,7 @@ class PlayerService extends Service {
         const query = { // 查询条件
             limit: options.pageSize,
             offset: (options.page - 1) * options.pageSize,
-            order: [[options.order, options.orderDir]],
+            order: [[options.order, options.orderDir], ['no', 'asc']],
             attributes: ['address', 'imgWidth', 'imgHeight', 'type', 'cashGift', 'diamondVotes', 'id', 'introduce', 'name', 'no', 'pictures', 'status', 'tel', 'remark', 'totalVotes']
         }
         query.where = {}
