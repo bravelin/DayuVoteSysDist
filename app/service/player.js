@@ -146,7 +146,7 @@ class PlayerService extends Service {
             let row = null;
             if (xlsxData && xlsxData.length > 2) {
                 let addCount = 0;
-                for (let i = 1; i < xlsxData.length; i++) {
+                for (let i = 0; i < xlsxData.length; i++) {
                     row = xlsxData[i];
                     if (row.length && row.length >= 3) {
                         addCount = addCount + 1;
