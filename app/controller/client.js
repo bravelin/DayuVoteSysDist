@@ -75,7 +75,7 @@ class ClientController extends Controller {
         const actId = params.id;
         if (actId) {
             querys.actId = actId;
-            querys.pageSize = parseInt(querys.pageSize || 5);
+            querys.pageSize = parseInt(querys.pageSize || 15);
             querys.page = parseInt(querys.page || 0);
             querys.key = querys.key ? decodeURIComponent(querys.key) : '';
             const res = await service.player.clientQuery(querys);
