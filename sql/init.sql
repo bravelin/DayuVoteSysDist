@@ -92,6 +92,7 @@ create table player (
     cashGift int default 0, -- 礼金数 -- money数目
     actId char(32), -- 活动ID
     userId char(32), -- 报名参加的微信用户
+    shareCount int default 0, -- 分享数
     createdAt datetime,
     updatedAt datetime,
     createUserId char(32), -- 创建活动的管理者ID

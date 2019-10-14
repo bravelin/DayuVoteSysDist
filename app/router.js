@@ -105,6 +105,7 @@ module.exports = app => {
     router.post('/api/client/wx/sign', controller.client.wxSign); // 获取分享接口的配置
     router.post('/api/client/wx/prepay', controller.client.prepay); // 生成支付订单
     router.post('/api/client/wx/cancelOrder', controller.client.cancelOrder); // 取消订单
+    router.post('/api/client/wx/share', controller.client.wxShare); // 增加微信分享
 
     // 404
     router.get('*', controller.error.missing);

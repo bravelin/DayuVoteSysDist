@@ -272,5 +272,20 @@ class ClientController extends Controller {
             }
         }
     }
+    // 增加微信分享
+    async wxShare () {
+        const { ctx, service } = this;
+        const helper = ctx.helper;
+        const isVerify = await helper.verifyToken(ctx);
+        if (isVerify) {
+            const params = ctx.request.body;
+            if (!params.id) {
+                helper.success(ctx, '', '缺少参数!', 501);
+            } else {
+                const res = await service.player.addShare(params.id);
+                helper.success(ctx, res);
+            }
+        }
+    }
 }
 module.exports = ClientController;

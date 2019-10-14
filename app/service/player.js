@@ -23,7 +23,7 @@ class PlayerService extends Service {
             limit: options.pageSize,
             offset: (options.page - 1) * options.pageSize,
             order: [[options.order, options.orderDir], ['no', 'asc']],
-            attributes: ['address', 'imgWidth', 'imgHeight', 'type', 'cashGift', 'diamondVotes', 'id', 'introduce', 'name', 'no', 'pictures', 'status', 'tel', 'remark', 'totalVotes']
+            attributes: ['address', 'imgWidth', 'imgHeight', 'type', 'cashGift', 'diamondVotes', 'id', 'introduce', 'name', 'no', 'pictures', 'status', 'tel', 'remark', 'totalVotes', 'shareCount']
         }
         query.where = {}
         if (options.key0) {
@@ -178,6 +178,17 @@ class PlayerService extends Service {
         } catch (err) {
             await sendToWormhole(stream); // 必须将上传的文件流消费掉，要不然浏览器响应会卡死
             throw err;
+        }
+    }
+    // 增加分享数
+    async addShare (id) {
+        const ctx = this.ctx;
+        const player = await ctx.model.Player.findByPk(id);
+        if (player) {
+            await player.update({ shareCount: player.shareCount + 1 });
+            return true;
+        } else {
+            return false;
         }
     }
     // 设置为今日之星

@@ -52,6 +52,10 @@ module.exports = app => {
             type: INTEGER,
             defaultValue: 0
         },
+        shareCount: {
+            type: INTEGER,
+            defaultValue: 0
+        },
         actId: {
             type: STRING
         },
