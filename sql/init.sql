@@ -85,7 +85,9 @@ create table player (
     remark varchar(1000), -- 备注
     address varchar(1000), -- 地址
     type char(1), -- 主动报名-1  后台添加-2 
-    status char(1), -- 状态 0-已删 1-未审核 2-已审核正常 3-已审核禁止投票 4-未通过审核 
+    status char(1), -- 状态 0-已删 1-未审核 2-已审核正常 3-已审核禁止投票 4-未通过审核
+    violationCount int default 0, -- 系统检测到的违规刷票次数值
+    prohibitTime datetime, -- 当违规刷票次数大于5时，系统禁止该选手投票的时间，一小时之后解禁
     totalVotes int default 0, -- 总票数
     diamondVotes int default 0, -- 钻石票
     adjustVotes int default 0, -- 系统调票

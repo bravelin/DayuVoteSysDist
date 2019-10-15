@@ -1,7 +1,7 @@
 /** 选手 Model */
 const db = require('../db')
 module.exports = app => {
-    const { STRING, INTEGER } = app.Sequelize;
+    const { STRING, INTEGER, DATE } = app.Sequelize;
     const Player = db.defineModel(app, 'player', {
         name: {
             type: STRING,
@@ -55,6 +55,13 @@ module.exports = app => {
         shareCount: {
             type: INTEGER,
             defaultValue: 0
+        },
+        violationCount: {
+            type: INTEGER,
+            defaultValue: 0
+        },
+        prohibitTime: {
+            type: DATE
         },
         actId: {
             type: STRING
