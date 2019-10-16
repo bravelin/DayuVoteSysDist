@@ -21,9 +21,7 @@ begin
                         set curr_count = curr_count + 1;
                         update player set violationCount = curr_count where id = player_id;
                         if curr_count > 5 then
-                            begin
-                                update player set status = '3', prohibitTime = now() where id = player_id;
-                            end
+		update player set status = '3', prohibitTime = now() where id = player_id;
                         end if;
                     end
                 end if;
