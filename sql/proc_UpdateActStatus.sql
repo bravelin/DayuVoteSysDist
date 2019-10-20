@@ -16,7 +16,7 @@ begin
     declare act_cur cursor for select id, signUpStartTime, voteStartTime, voteEndTime, status from activity where activity.status = '3' or activity.status = '2' or activity.status = '1' or activity.status = '4';
     declare continue handler for sqlstate '02000' set done = 1;
     -- set now_time = date_add(now_time, INTERVAL '-8' hour);
-    set last_time = date_add(now_time, INTERVAL '10' day);
+    set last_time = date_add(now_time, INTERVAL '2' day);
 
     open act_cur;
 	while done <> 1 do

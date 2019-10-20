@@ -5,7 +5,7 @@ const Subscription = require('egg').Subscription;
 class DetectViolation extends Subscription {
     static get schedule() {
         return {
-            interval: '10m', // 10分钟调一次
+            interval: '20m', // 10分钟调一次
             type: 'all',
             immediate: true
         }
