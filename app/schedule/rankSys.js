@@ -14,14 +14,40 @@ class rankSys extends Subscription {
         const ctx = this.ctx;
         const acts = await ctx.service.activity.queryNeedRankSysAct();
         let actId = '';
+        let actTitle = '';
         let players = null;
-        console.log('需要推送的players...')
+        let player = null;
+        const config = ctx.app.config;
+        let res = null;
         for (let i = 0; i < acts.length; i++) {
             actId = acts[i].id;
-            console.log('actId...', actId);
-            // 查询该活动排名前两位的选手
+            actTitle = acts[i].title;
+            // 查询该活动排名前3位的选手
             players = await ctx.service.player.queryTopPlayers(actId, 3);
-            console.log('players...', players);
+            for (let j = 0; j < players.length; j++) {
+                player = players[j];
+                res = await ctx.curl(config.ranksys, {
+                    method: 'POST',
+                    data: {
+                        name: player.name,
+                        tel: player.tel,
+                        no: player.no,
+                        introduce: player.introduce,
+                        pictures: player.pictures,
+                        picturePrefix: config.picHost,
+                        remark: player.remark,
+                        address: player.address,
+                        totalVotes: player.totalVotes,
+                        actId,
+                        actTitle,
+                        actRank: (j + 1) + '',
+                        sysOrigin: config.rankorigin
+                    },
+                    dataType: 'json'
+                });
+                console.log('=====================res==================', res);
+            }
+            await ctx.service.activity.updateToRankSysStatus(actId);
         }
     }
 }
