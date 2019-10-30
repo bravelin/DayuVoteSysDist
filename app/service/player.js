@@ -50,6 +50,15 @@ class PlayerService extends Service {
         resData.totalPage = Math.ceil(res.count / options.pageSize);
         return resData;
     }
+    // 查询活动名称前几位的选手
+    async queryTopPlayers (actId, num) {
+        const ctx = this.ctx;
+        const Sequelize = this.app.Sequelize;
+        const sql = `select * from player where actId='${actId}' order by totalVotes desc limit 0,${num};`
+        return await ctx.model.query(sql, {
+            type: Sequelize.QueryTypes.SELECT
+        });
+    }
     // 查询未审核的选手总数
     async unAuditCount (userId) {
         const ctx = this.ctx;

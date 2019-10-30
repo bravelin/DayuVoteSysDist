@@ -68,6 +68,7 @@ create table activity (
     moneyCount int default 0, -- 金额
     starPlayer char(32), -- 今日之星
     backgroundMusic varchar(500), -- 背景音乐地址
+    toRankSys char(1) default '0', -- 0 排名前两位是否已推送到ranksys
     createdAt datetime,
     updatedAt datetime,
     primary key(id)

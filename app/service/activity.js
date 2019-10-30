@@ -145,6 +145,20 @@ class ActivityService extends Service {
     //     }
     //     return res;
     // }
+    // 查询需要推送至ranksys的活动
+    async queryNeedRankSysAct () {
+        const ctx = this.ctx;
+        const Sequelize = ctx.app.Sequelize;
+        const nowDate = new Date()
+        const oneDay = 24 * 60 * 60 * 1000;
+        const thisTime = new Date();
+        thisTime.setHours(0, 0, 0, 0);
+        thisTime.setTime(nowDate.getTime() - oneDay * 5);
+        const timeStr = ctx.helper.formatTime(thisTime);
+        return await ctx.model.query(`SELECT id,title from activity where status='4' and toRankSys='0' and voteEndTime>='${timeStr}'`, {
+            type: Sequelize.QueryTypes.SELECT
+        });
+    }
     async findActById (id, tag = false) {
         const ctx = this.ctx;
         if (!tag) {

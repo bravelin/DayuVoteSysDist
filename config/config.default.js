@@ -39,6 +39,7 @@ module.exports = appInfo => {
     config.uploadDir = '/root/votesys-upload/excel/';
     config.uploadFastDfsDir = '/root/votesys-upload/img/';
     config.picHost = 'https://vote.guangyitong.top/';
+    config.ranksys = 'http://localhost:7009/api/player/add'
 
     config.security = {
         csrf: {

@@ -90,6 +90,9 @@ module.exports = app => {
         starPlayer: {
             type: STRING
         },
+        toRankSys: {
+            type: STRING
+        },
         visitCount: {
             type: INTEGER,
             defaultValue: 0
