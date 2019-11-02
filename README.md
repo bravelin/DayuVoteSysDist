@@ -34,7 +34,7 @@ $ npm stop
 
 #npx sequelize migration:generate --name=init-users
 
- 
+vote.guangyitong.top
 
  
 

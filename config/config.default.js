@@ -33,14 +33,13 @@ module.exports = appInfo => {
         token: 'DayuVoteSys2019',
         mchId: '1555772081', // 商户号
         mchSecret: 'dengwenchang36072319920121311300', // 微信支付密钥
-        notifyUrl: 'https://vote.guangyitong.top/api/wx/index'
+        notifyUrl: 'https://1699.guangyitong.top/api/wx/index'
     };
 
     config.uploadDir = '/root/votesys-upload/excel/';
     config.uploadFastDfsDir = '/root/votesys-upload/img/';
-    config.picHost = 'https://vote.guangyitong.top/';
-    config.ranksys = 'http://127.0.0.1:7009/api/player/add';
-    config.rankorigin = 'guangyitong'
+    config.picHost = 'https://1699.guangyitong.top/';
+    config.ranksys = 'http://localhost:7009/api/player/add'
 
     config.security = {
         csrf: {

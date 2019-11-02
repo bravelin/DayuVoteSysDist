@@ -37,33 +37,34 @@ class SysService extends Service {
         });
     }
     async getIpPlaceOwnership (ip) { // 获取IP地址的归属地
-        const ctx = this.ctx;
-        const app = ctx.app;
-        const config = app.config.ipPlaceOwnership;
-        if (!ip) {
-            return
-        }
-        try{
-            const res = await ctx.curl(`${config.queryUrl}?ip=${ip}`, {
-                dataType: 'json',
-                headers: {
-                    'Authorization': `APPCODE ${config.appCode}`
-                }
-            });
-            console.log('查询IP地址的归属地...', ip);
-            console.log(res.data);
-            const resData = res.data;
-            if (resData.ret == 200) { // 正常返回
-                const { country, prov, city, area } = resData.data;
-                return {
-                    country, province: prov, city, area
-                };
-            }
-            return null;
-        } catch (err) {
-            console.log('IP归属地查询ERROR...', err);
-            return null;
-        }
+        // const ctx = this.ctx;
+        // const app = ctx.app;
+        // // const config = app.config.ipPlaceOwnership;
+        // if (!ip) {
+        //     return
+        // }
+        return null
+        // try{
+        //     const res = await ctx.curl(`${config.queryUrl}?ip=${ip}`, {
+        //         dataType: 'json',
+        //         headers: {
+        //             'Authorization': `APPCODE ${config.appCode}`
+        //         }
+        //     });
+        //     console.log('查询IP地址的归属地...', ip);
+        //     console.log(res.data);
+        //     const resData = res.data;
+        //     if (resData.ret == 200) { // 正常返回
+        //         const { country, prov, city, area } = resData.data;
+        //         return {
+        //             country, province: prov, city, area
+        //         };
+        //     }
+        //     return null;
+        // } catch (err) {
+        //     console.log('IP归属地查询ERROR...', err);
+        //     return null;
+        // }
     }
 }
 module.exports = SysService;
