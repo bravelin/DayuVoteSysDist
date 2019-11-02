@@ -12,7 +12,13 @@ module.exports = appInfo => {
         port: '3306',
         username: 'root',
         password: 'root123XYZ@',
-        database: 'votesys'
+        database: 'votesys',
+        pool: {
+            max: 100,
+            min: 0,
+            idle: 200000,
+            acquire: 1000000
+        }
     };
 
     config.jwt = {
