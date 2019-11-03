@@ -12,6 +12,7 @@ class UpdateWxAccessToken extends Subscription {
     }
     async subscribe () {
         const ctx = this.ctx;
+        await ctx.service.dict.getAll();
         await ctx.service.wx.getAccessToken();
     }
 }
