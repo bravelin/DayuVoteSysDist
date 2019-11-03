@@ -6,7 +6,7 @@ const Subscription = require('egg').Subscription;
 class UpdateActStatus extends Subscription {
     static get schedule() {
         return {
-            interval: '15m',
+            interval: '13m',
             type: 'all',
             immediate: true
         }

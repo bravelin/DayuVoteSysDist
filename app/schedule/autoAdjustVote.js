@@ -6,9 +6,9 @@ let timer = null
 class AutoAdjustVote extends Subscription {
     static get schedule() {
         return {
-            interval: '25m', // 15分钟调一次
+            interval: '30m', // xx分钟调一次
             type: 'all',
-            immediate: true
+            immediate: false
         }
     }
     async subscribe () {

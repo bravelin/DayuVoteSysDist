@@ -153,11 +153,18 @@ class ActivityService extends Service {
         const oneDay = 24 * 60 * 60 * 1000;
         const thisTime = new Date();
         thisTime.setHours(0, 0, 0, 0);
-        thisTime.setTime(nowDate.getTime() - oneDay * 5);
+        thisTime.setTime(nowDate.getTime() - oneDay * 15);
         const timeStr = ctx.helper.formatTime(thisTime);
         return await ctx.model.query(`SELECT id,title from activity where status='4' and toRankSys='0' and voteEndTime>='${timeStr}'`, {
             type: Sequelize.QueryTypes.SELECT
         });
+    }
+    async updateToRankSysStatus (actId) {
+        const ctx = this.ctx;
+        const act = await ctx.model.Activity.findByPk(actId);
+        if (act) {
+            await act.update({ toRankSys: '1' });
+        }
     }
     async findActById (id, tag = false) {
         const ctx = this.ctx;

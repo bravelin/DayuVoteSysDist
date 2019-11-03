@@ -1,5 +1,5 @@
 /**
- * 每晚10点更新活动的今日之星
+ * 每早10点更新活动的今日之星
  */
 const Subscription = require('egg').Subscription;
 class UpdateActStar extends Subscription {

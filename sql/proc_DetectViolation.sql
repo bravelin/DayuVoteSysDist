@@ -16,10 +16,10 @@ begin
         fetch player_cur into player_id, curr_count;
             if not done then
                 set vote_count = (select count(*) from vote where vote.playerId = player_id and type='0' and createdAt > last_time);
-                if vote_count > 260 then
+                if vote_count > 250 then
                         set curr_count = curr_count + 1;
                         update player set violationCount = curr_count where id = player_id;
-                        if curr_count > 3 then
+                        if curr_count >= 3 then
                             update player set status = '3', prohibitTime = now() where id = player_id;
                         end if;
                 end if;

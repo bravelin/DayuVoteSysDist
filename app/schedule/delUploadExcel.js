@@ -8,7 +8,7 @@ class DelUploadExcel extends Subscription {
         return {
             interval: '5d',
             type: 'all',
-            immediate: true
+            immediate: false
         }
     }
     async subscribe () {

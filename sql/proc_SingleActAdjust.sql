@@ -26,7 +26,6 @@ begin
     set limitNum = floor(limitNum * 0.6);
     set addCount = (select dictValue from dict where dict.id = '00005') + 0;
     
-    
     select createUserId, p0, p1, voteCount, popularity into act_createUserId, act_p0, act_p1, act_voteCount, act_popularity from activity where id = actId;
     open player_cur;
 	while (done <> 1 and i < limitNum) do
