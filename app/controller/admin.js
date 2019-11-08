@@ -33,6 +33,7 @@ class AdminController extends Controller {
         hash.update(plainPassword);
         hash.update(plainPassword);
         const password = hash.digest('hex');
+        console.log('password...', password);
         // 查找
         const findRes = await service.managers.findUser(params.userName, password);
         if (findRes) {
