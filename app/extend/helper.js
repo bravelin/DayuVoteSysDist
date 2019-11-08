@@ -1,7 +1,7 @@
 const crypto = require('crypto');
 
 // 加密的key
-const aesKey = '20191201081721kZ'
+const aesKey = '20191201091921kM'
 const aesIv = [...aesKey].reverse().join('')
 
 // AES解密
