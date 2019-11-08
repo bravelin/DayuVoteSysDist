@@ -122,8 +122,6 @@ create table vote (
     primary key(id)
 );
 
-select sum(v.diamondAmount) as score, createUserId as createUserId from vote as v where (v.p0=uid or v.p1=uid) group by createUserId
-
 /**** 微信用户表,字段信息从微信接口获取 ****/
 drop table if exists user;
 create table user (
