@@ -32,7 +32,7 @@ module.exports = appInfo => {
     };
 
     config.wx = {
-        mp_verify: 'MP_verify_pBDs8K6eBbF7UKmf.txt',
+        mp_verify: 'MP_verify_jZtjDFBY8W7fM3Qs',
         appId: 'wx79735b40b5c806aa',
         appSecret: '1b6bdc73479d0d69a79bd9e9d2ec80b0',
         encodingAESKey: 'xeGcYay15A53tGbIZnqQlVZ53bp2fTyiT57MZee4xOh',
