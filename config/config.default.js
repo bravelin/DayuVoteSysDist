@@ -37,8 +37,8 @@ module.exports = appInfo => {
         appSecret: 'fcad7bc17d31f4abb7afb3cffdefac43',
         encodingAESKey: 'VXyZ0B4b51QL53hs8nn9t0LFDtIQwwoffqkAFS7sHNb',
         token: 'DayuVoteSys2119',
-        mchId: '1555772081', // 商户号
-        mchSecret: 'dengwenchang36072319920121311300', // 微信支付密钥
+        mchId: '1562108971', // 商户号
+        mchSecret: '360723199608140059daimingjun0001', // 微信支付密钥
         notifyUrl: 'https://1688.guangyitong.top/api/wx/index'
     };
 
