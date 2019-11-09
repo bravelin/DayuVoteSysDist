@@ -34,9 +34,9 @@ module.exports = appInfo => {
     config.wx = {
         mp_verify: 'MP_verify_jZtjDFBY8W7fM3Qs.txt',
         appId: 'wx80add522ed965f93',
-        appSecret: '1b6bdc73479d0d69a79bd9e9d2ec80b0',
-        encodingAESKey: 'xeGcYay15A53tGbIZnqQlVZ53bp2fTyiT57MZee4xOh',
-        token: 'DayuVoteSys2019',
+        appSecret: 'fcad7bc17d31f4abb7afb3cffdefac43',
+        encodingAESKey: 'VXyZ0B4b51QL53hs8nn9t0LFDtIQwwoffqkAFS7sHNb',
+        token: 'DayuVoteSys2119',
         mchId: '1555772081', // 商户号
         mchSecret: 'dengwenchang36072319920121311300', // 微信支付密钥
         notifyUrl: 'https://1688.guangyitong.top/api/wx/index'
@@ -44,7 +44,7 @@ module.exports = appInfo => {
 
     config.uploadDir = '/root/votesys-upload/excel/';
     config.uploadFastDfsDir = '/root/votesys-upload/img/';
-    config.picHost = 'https://1688.guangyou.top/';
+    config.picHost = 'https://1688.guangyitong.top/';
     config.ranksys = 'https://rank.guangyitong.top/api/player/add'
 
     config.security = {
