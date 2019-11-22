@@ -23,7 +23,7 @@ create table manager (
 
 /*** 增加super admin ***/
 insert into manager (id, loginName, loginPassword, realName, role, createdAt, updatedAt)
-values ('6c84fb9012c411e1840d7b25c5ee775a', 'SuperAdministrator', '05471d5926bb87ec3431d9797e5140d1fc1e0d2b', '超级管理员', 0, '2018-12-08 09:16:19', '2018-12-08 09:16:19'); /* SuperAdministrator seq119811xxj */
+values ('6c84fb9012c411e1840d7b25c5ee775a', 'SuperAdministrator', 'fc8e76210e83e389b9f2d6342ad312d3c584a518', '超级管理员', 0, '2018-12-08 09:16:19', '2018-12-08 09:16:19'); /* SuperAdministrator seq119811xxj */
 
 /*** 系统操作日志表 ***/
 drop table if exists log;
