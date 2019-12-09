@@ -39,12 +39,12 @@ module.exports = appInfo => {
         token: 'DayuVoteSys2019',
         mchId: '1555772081', // 商户号
         mchSecret: 'dengwenchang36072319920121311300', // 微信支付密钥
-        notifyUrl: 'https://1699.guangyitong.top/api/wx/index'
+        notifyUrl: 'https://bhpanduola04.com/api/wx/index'
     };
 
     config.uploadDir = '/root/votesys-upload/excel/';
     config.uploadFastDfsDir = '/root/votesys-upload/img/';
-    config.picHost = 'https://1699.guangyitong.top/';
+    config.picHost = 'https://bhpanduola04.com/';
     config.ranksys = 'http://localhost:7009/api/player/add'
 
     config.security = {
