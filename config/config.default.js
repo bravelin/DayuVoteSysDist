@@ -39,12 +39,12 @@ module.exports = appInfo => {
         token: 'DayuVoteSys2119',
         mchId: '1562108971', // 商户号
         mchSecret: '360723199608140059daimingjun0001', // 微信支付密钥
-        notifyUrl: 'https://1688.morethanthink.com/api/wx/index'
+        notifyUrl: 'https://1688.bhpanduola04.com/api/wx/index'
     };
 
     config.uploadDir = '/root/votesys-upload/excel/';
     config.uploadFastDfsDir = '/root/votesys-upload/img/';
-    config.picHost = 'https://1688.morethanthink.com/';
+    config.picHost = 'https://1688.bhpanduola04.com/';
     config.ranksys = 'https://rank.bhpanduola04.com/api/player/add'
 
     config.security = {
