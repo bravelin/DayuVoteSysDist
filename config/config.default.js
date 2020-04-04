@@ -45,7 +45,7 @@ module.exports = appInfo => {
     config.uploadDir = '/root/votesys-upload/excel/';
     config.uploadFastDfsDir = '/root/votesys-upload/img/';
     config.picHost = 'https://1688.bhpanduola04.com/';
-    config.ranksys = 'https://rank.bhpanduola04.com/api/player/add'
+    config.ranksys = 'http://localhost:7009/api/player/add';
 
     config.security = {
         csrf: {
