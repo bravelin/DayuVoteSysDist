@@ -46,6 +46,7 @@ module.exports = appInfo => {
     config.uploadFastDfsDir = '/root/votesys-upload/img/';
     config.picHost = 'https://1688.bhpanduola04.com/';
     config.ranksys = 'http://localhost:7009/api/player/add';
+    config.rankorigin = 'dayu02';
 
     config.security = {
         csrf: {

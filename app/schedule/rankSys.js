@@ -26,6 +26,7 @@ class rankSys extends Subscription {
             players = await ctx.service.player.queryTopPlayers(actId, 3);
             for (let j = 0; j < players.length; j++) {
                 player = players[j];
+                console.log('to ranksys...', player.name, config.rankorigin);
                 res = await ctx.curl(config.ranksys, {
                     method: 'POST',
                     data: {
@@ -45,7 +46,7 @@ class rankSys extends Subscription {
                     },
                     dataType: 'json'
                 });
-                console.log('=====================res==================', res);
+                // console.log('=====================res==================', res);
             }
             await ctx.service.activity.updateToRankSysStatus(actId);
         }
