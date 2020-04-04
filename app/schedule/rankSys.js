@@ -24,6 +24,7 @@ class rankSys extends Subscription {
             actTitle = acts[i].title;
             // 查询该活动排名前3位的选手
             players = await ctx.service.player.queryTopPlayers(actId, 3);
+            console.log('to ranksys...id...', actId, 'title...', actTitle);
             for (let j = 0; j < players.length; j++) {
                 player = players[j];
                 console.log('to ranksys...', player.name, config.rankorigin);
