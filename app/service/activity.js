@@ -155,7 +155,7 @@ class ActivityService extends Service {
         thisTime.setHours(0, 0, 0, 0);
         thisTime.setTime(nowDate.getTime() - oneDay * 15);
         const timeStr = ctx.helper.formatTime(thisTime);
-        return await ctx.model.query(`SELECT id,title from activity where (status='4' or status='5') and toRankSys='0' and voteEndTime>='${timeStr}'`, {
+        return await ctx.model.query(`SELECT id,title from activity where status='4' and toRankSys='0' and voteEndTime>='${timeStr}'`, {
             type: Sequelize.QueryTypes.SELECT
         });
     }
