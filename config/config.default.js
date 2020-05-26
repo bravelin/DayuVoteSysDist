@@ -39,12 +39,12 @@ module.exports = appInfo => {
         token: 'DayuVoteSys2119',
         mchId: '1562108971', // 商户号
         mchSecret: '360723199608140059daimingjun0001', // 微信支付密钥
-        notifyUrl: 'https://1688.deyangxueche.com/api/wx/index'
+        notifyUrl: 'https://1688.junhengcehua.com/api/wx/index'
     };
 
     config.uploadDir = '/root/votesys-upload/excel/';
     config.uploadFastDfsDir = '/root/votesys-upload/img/';
-    config.picHost = 'https://1688.deyangxueche.com/';
+    config.picHost = 'https://1688.junhengcehua.com/';
     config.ranksys = 'http://localhost:7009/api/player/add';
     config.rankorigin = 'dayu02';
 
