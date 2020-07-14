@@ -1,8 +1,8 @@
 /*** 创建数据库 ***/
-drop database if exists votesys;
-create database votesys default character set utf8 collate utf8_general_ci;
+drop database if exists votesys2;
+create database votesys2 default character set utf8 collate utf8_general_ci;
 
-use votesys;
+use votesys2;
 
 /*** 管理人员表 ***/
 drop table if exists manager;
@@ -121,8 +121,6 @@ create table vote (
     updatedAt datetime,
     primary key(id)
 );
-
-select sum(v.diamondAmount) as score, createUserId as createUserId from vote as v where (v.p0=uid or v.p1=uid) group by createUserId
 
 /**** 微信用户表,字段信息从微信接口获取 ****/
 drop table if exists user;
