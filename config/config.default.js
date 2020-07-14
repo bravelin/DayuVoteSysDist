@@ -12,7 +12,7 @@ module.exports = appInfo => {
         port: '3306',
         username: 'root',
         password: 'root123XYZ@',
-        database: 'votesys',
+        database: 'votesys2',
         pool: {
             max: 100,
             min: 0,
@@ -32,21 +32,21 @@ module.exports = appInfo => {
     };
 
     config.wx = {
-        mp_verify: 'MP_verify_jZtjDFBY8W7fM3Qs.txt',
-        appId: 'wx80add522ed965f93',
-        appSecret: 'fcad7bc17d31f4abb7afb3cffdefac43',
-        encodingAESKey: 'VXyZ0B4b51QL53hs8nn9t0LFDtIQwwoffqkAFS7sHNb',
-        token: 'DayuVoteSys2119',
-        mchId: '1562108971', // 商户号
-        mchSecret: '360723199608140059daimingjun0001', // 微信支付密钥
-        notifyUrl: 'https://1688.jiujijianghu.com/api/wx/index'
+        mp_verify: 'MP_verify_pBDs8K6eBbF7UKmf.txt',
+        appId: 'wx79735b40b5c806aa',
+        appSecret: '1b6bdc73479d0d69a79bd9e9d2ec80b0',
+        encodingAESKey: 'xeGcYay15A53tGbIZnqQlVZ53bp2fTyiT57MZee4xOh',
+        token: 'DayuVoteSys2019',
+        mchId: '1555772081', // 商户号
+        mchSecret: 'dengwenchang36072319920121311300', // 微信支付密钥
+        notifyUrl: 'https://1699.jiujijianghu.com/api/wx/index'
     };
 
     config.uploadDir = '/root/votesys-upload/excel/';
     config.uploadFastDfsDir = '/root/votesys-upload/img/';
-    config.picHost = 'https://1688.jiujijianghu.com/';
+    config.picHost = 'https://1699.jiujijianghu.com/';
     config.ranksys = 'http://localhost:7009/api/player/add';
-    config.rankorigin = 'dayu02';
+    config.rankorigin = 'dayu01';
 
     config.security = {
         csrf: {
