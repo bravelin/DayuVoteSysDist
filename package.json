@@ -38,8 +38,8 @@
     "node": ">=8.9.0"
   },
   "scripts": {
-    "start": "egg-scripts start --port=7011 --sticky --daemon --title=votesys-server",
-    "stop": "egg-scripts stop --title=votesys-server",
+    "start": "egg-scripts start --port=7011 --sticky --daemon --title=votesys-server-3",
+    "stop": "egg-scripts stop --title=votesys-server-3",
     "dev": "egg-bin dev --port=7011",
     "debug": "egg-bin debug --port=7011",
     "test": "npm run lint -- --fix && npm run test-local",
